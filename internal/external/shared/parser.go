@@ -1,6 +1,8 @@
 package shared
 
-import "time"
+import (
+	"time"
+)
 
 func ParseStringToTime(layout string, input *string) (*time.Time, error) {
 	if input == nil {
@@ -13,4 +15,14 @@ func ParseStringToTime(layout string, input *string) (*time.Time, error) {
 	}
 
 	return &t, nil
+}
+
+func FormatTime(layout string, time *time.Time) string {
+	var output string
+
+	if time != nil {
+		output = time.Format(layout)
+	}
+
+	return output
 }
