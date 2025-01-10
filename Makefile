@@ -27,3 +27,25 @@ watch: ## Live reload using air
 			exit 1; \
 		fi; \
 	fi
+
+##@ Testing
+test: ## Test the application
+	@echo "Testing..."
+	@go test ./internal/...
+
+##@ Auto generated files
+gen-mocks: ## Gen mock files using mockery
+	@if command -v mockery > /dev/null; then \
+		echo "Generating..."; \
+		mockery; \
+	else \
+		read -p "Go 'mockery' is not installed on your machine. Do you want to install it? [Y/n] " choice; \
+		if [ "$$choice" != "n" ] && [ "$$choice" != "N" ]; then \
+			go install github.com/vektra/mockery/v2@latest; \
+			echo "Generating..."; \
+			mockery; \
+		else \
+			echo "You chose not to intall mockery. Exiting..."; \
+			exit 1; \
+		fi; \
+	fi
