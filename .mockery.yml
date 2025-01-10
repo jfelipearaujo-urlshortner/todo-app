@@ -1,0 +1,19 @@
+with-expecter: true
+issue-845-fix: true
+packages:
+  github.com/jfelipearaujo-urlshortner/todo-app/internal/core/domain/repositories/item:
+    config:
+      filename: "{{ .InterfaceName | snakecase }}_mock.go"
+      dir: "./internal/core/infrastructure/repositories/item"
+      mockname: "Mock{{ .InterfaceName }}"
+      outpkg: "item_repository"
+      inpackage: True
+      include-regex: "(Repository)$"
+  github.com/jfelipearaujo-urlshortner/todo-app/internal/core/domain/usecases/item/complete:
+    config:
+      filename: "usecase_mock.go"
+      dir: "./internal/core/application/usecases/item/complete"
+      mockname: "Mock{{ .InterfaceName }}"
+      outpkg: "complete_usecase"
+      inpackage: True
+      include-regex: "(UseCase)$"
