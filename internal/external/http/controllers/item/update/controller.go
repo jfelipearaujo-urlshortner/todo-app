@@ -10,19 +10,19 @@ import (
 	"github.com/jfelipearaujo-urlshortner/todo-app/internal/external/shared"
 )
 
-type controller struct {
+type Controller struct {
 	validator *validator.Validate
 	useCase   update_contract.UseCase
 }
 
-func New(validator *validator.Validate, useCase update_contract.UseCase) *controller {
-	return &controller{
+func New(validator *validator.Validate, useCase update_contract.UseCase) *Controller {
+	return &Controller{
 		validator: validator,
 		useCase:   useCase,
 	}
 }
 
-func (c *controller) Handle(ctx *fiber.Ctx) error {
+func (c *Controller) Handle(ctx *fiber.Ctx) error {
 	var request Request
 
 	if err := ctx.BodyParser(&request); err != nil {

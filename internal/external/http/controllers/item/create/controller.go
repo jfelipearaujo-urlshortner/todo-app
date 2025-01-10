@@ -10,19 +10,19 @@ import (
 	"github.com/jfelipearaujo-urlshortner/todo-app/internal/external/shared"
 )
 
-type controller struct {
+type Controller struct {
 	validator *validator.Validate
 	useCase   create_contract.UseCase
 }
 
-func New(validator *validator.Validate, useCase create_contract.UseCase) *controller {
-	return &controller{
+func New(validator *validator.Validate, useCase create_contract.UseCase) *Controller {
+	return &Controller{
 		validator: validator,
 		useCase:   useCase,
 	}
 }
 
-func (c *controller) Handle(ctx *fiber.Ctx) error {
+func (c *Controller) Handle(ctx *fiber.Ctx) error {
 	var request Request
 
 	if err := ctx.BodyParser(&request); err != nil {
@@ -30,7 +30,7 @@ func (c *controller) Handle(ctx *fiber.Ctx) error {
 	}
 
 	if err := c.validator.Struct(&request); err != nil {
-		return ctx.Status(http.StatusUnprocessableEntity).JSON(err)
+		return ctx.Status(http.StatusUnprocessableEntity).JSON(map[string]string{"error": err.Error()})
 	}
 
 	deadlineAt, err := shared.ParseStringToTime(layouts.DatetimeLayout, request.DeadlineAt)

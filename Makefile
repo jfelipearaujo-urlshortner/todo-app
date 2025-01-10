@@ -4,7 +4,7 @@ help:  ## Display this help
 
 ##@ Build
 build: ## Build the application to the output folder (default: ./buil/main)
-	@echo "Building..."	
+	@echo "Building..."
 	@go build -race -o build/main cmd/api/main.go
 
 ##@ Development

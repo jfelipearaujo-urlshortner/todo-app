@@ -8,19 +8,19 @@ import (
 	get_contract "github.com/jfelipearaujo-urlshortner/todo-app/internal/core/domain/usecases/item/get"
 )
 
-type controller struct {
+type Controller struct {
 	validator *validator.Validate
 	useCase   get_contract.UseCase
 }
 
-func New(validator *validator.Validate, useCase get_contract.UseCase) *controller {
-	return &controller{
+func New(validator *validator.Validate, useCase get_contract.UseCase) *Controller {
+	return &Controller{
 		validator: validator,
 		useCase:   useCase,
 	}
 }
 
-func (c *controller) Handle(ctx *fiber.Ctx) error {
+func (c *Controller) Handle(ctx *fiber.Ctx) error {
 	var request Request
 
 	request.ID = ctx.Params("id")

@@ -12,7 +12,9 @@ type repository struct {
 }
 
 func New() item_contract.Repository {
-	return &repository{}
+	return &repository{
+		database: make(map[string]entities.Item),
+	}
 }
 
 func (r *repository) Create(item entities.Item) error {
