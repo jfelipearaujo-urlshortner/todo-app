@@ -1,4 +1,4 @@
-package create_controller
+package update_controller
 
 import (
 	"github.com/jfelipearaujo-urlshortner/todo-app/internal/core/domain/constants/layouts"
@@ -6,8 +6,9 @@ import (
 )
 
 type Request struct {
-	Title       string  `json:"title" validate:"required,min=3,max=100"`
-	Description string  `json:"description" validate:"required,min=3,max=255"`
+	ID          string  `json:"id" validate:"required,uuid"`
+	Title       *string `json:"title" validate:"required,min=3,max=100"`
+	Description *string `json:"description" validate:"required,min=3,max=255"`
 	DeadlineAt  *string `json:"deadline_at" validate:"omitempty,datetime=2006-01-02T15:04:05.000Z"`
 }
 
