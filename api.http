@@ -1,0 +1,14 @@
+@host = http://localhost:3000
+
+### Create a new item
+POST {{host}}/api/v1/items
+Content-Type: application/json
+
+{
+    "title": "Lavar a louça",
+    "description": "Lavar a louça é uma das atividades mais importantes do dia a dia"
+}
+
+### List all items
+GET {{host}}/api/v1/items
+Content-Type: application/json
